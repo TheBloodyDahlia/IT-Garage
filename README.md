@@ -23,5 +23,5 @@ Hieronder vind je een stappenplan om alles correct te kunnen doen.
    sudo apt update && sudo apt upgrade -y ```
 4. (nog steeds in terminal)**Prusa installeren**: 
 
-```bash
-curl -L https://raw.githubusercontent.com/TheBloodyDahlia/IT-Garage/main/install_prusa.sh | bash```
+  ```bash
+  curl -L https://raw.githubusercontent.com/TheBloodyDahlia/IT-Garage/main/install_prusa.sh | bash```
