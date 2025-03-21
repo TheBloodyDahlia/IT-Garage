@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Controleer of Linux ingeschakeld is
-if [ ! -d "$HOME/.linuxbrew" ] && [ ! -d "$HOME/.penguin" ]; then
-    echo "Linux (Crostini) is niet ingeschakeld op deze Chromebook. Schakel het in via de instellingen."
-    exit 1
-fi
+# if [ ! -d "$HOME/.linuxbrew" ] && [ ! -d "$HOME/.penguin" ]; then
+#    echo "Linux (Crostini) is niet ingeschakeld op deze Chromebook. Schakel het in via de instellingen."
+#    exit 1
+#fi
 
 # Controleer de versie van Debian
 DEBIAN_VERSION=$(grep -oE '^[0-9]+' /etc/debian_version)
