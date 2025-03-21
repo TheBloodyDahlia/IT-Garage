@@ -2,7 +2,7 @@
 
 # Controleer of Linux ingeschakeld is
 if [ ! -d "$HOME/.linuxbrew" ] && [ ! -d "$HOME/.penguin" ]; then
-    zenity --error --text="Linux (Crostini) is niet ingeschakeld op deze Chromebook. Schakel het in via de instellingen."
+    echo "Linux (Crostini) is niet ingeschakeld op deze Chromebook. Schakel het in via de instellingen."
     exit 1
 fi
 
@@ -18,12 +18,12 @@ else
 fi
 
 # Download het PrusaSlicer bestand van GitHub
-zenity --info --text="Het PrusaSlicer bestand wordt gedownload van GitHub..."
+echo "Het PrusaSlicer bestand wordt gedownload van GitHub..."
 
 wget -O PrusaSlicer.AppImage "$PRUSA_URL"
 
 if [ ! -f "PrusaSlicer.AppImage" ]; then
-    zenity --error --text="Het downloaden is mislukt. Controleer de internetverbinding en probeer het opnieuw."
+    echo "Het downloaden is mislukt. Controleer de internetverbinding en probeer het opnieuw."
     exit 1
 fi
 
@@ -38,4 +38,4 @@ chmod +x PrusaSlicer.AppImage
 sudo mv PrusaSlicer.AppImage /usr/local/bin/prusaslicer
 
 # Installatie voltooid
-zenity --info --text="Installatie voltooid! Je kunt PrusaSlicer starten vanaf de terminal door 'prusaslicer' in te voeren."
+echo "Installatie voltooid! Je kunt PrusaSlicer starten vanaf de terminal door 'prusaslicer' in te voeren."
