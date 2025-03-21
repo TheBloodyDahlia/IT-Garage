@@ -28,7 +28,7 @@ if [ ! -f "PrusaSlicer.AppImage" ]; then
 fi
 
 # Systeem bijwerken
-zenity --info --text="Pakketten worden bijgewerkt..."
+echo "Pakketten worden bijgewerkt..."
 sudo apt update && sudo apt upgrade -y
 
 # Maak het bestand uitvoerbaar
