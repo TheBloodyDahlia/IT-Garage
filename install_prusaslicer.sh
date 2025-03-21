@@ -18,7 +18,7 @@ fi
 
 # Installeer PrusaSlicer via Flatpak
 echo "PrusaSlicer wordt geïnstalleerd via Flatpak..."
-flatpak install flathub com.prusa3d.PrusaSlicer -y
+sudo flatpak install flathub com.prusa3d.PrusaSlicer -y
 
 # Installatie voltooid
 echo "Installatie voltooid! Je kunt PrusaSlicer starten vanaf de terminal door 'flatpak run org.prusa3d.PrusaSlicer' in te voeren."
