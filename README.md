@@ -24,4 +24,4 @@ Hieronder vind je een stappenplan om alles correct te kunnen doen.
 4. (nog steeds in terminal)**Prusa installeren**: 
 
   ```bash
-  curl -L https://raw.githubusercontent.com/TheBloodyDahlia/IT-Garage/main/install_prusa.sh | bash```
+  curl -L https://github.com/TheBloodyDahlia/IT-Garage/raw/main/install_prusa.sh | bash```
