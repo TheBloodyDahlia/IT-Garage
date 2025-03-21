@@ -13,7 +13,7 @@ fi
 # Voeg de Flathub repository toe als deze nog niet is toegevoegd
 if ! flatpak remote-list | grep -q flathub; then
     echo "Voeg Flathub repository toe..."
-    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 fi
 
 # Installeer PrusaSlicer via Flatpak
