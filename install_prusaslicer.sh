@@ -1,41 +1,24 @@
 #!/bin/bash
 
-# Controleer of Linux ingeschakeld is
-# if [ ! -d "$HOME/.linuxbrew" ] && [ ! -d "$HOME/.penguin" ]; then
-#    echo "Linux (Crostini) is niet ingeschakeld op deze Chromebook. Schakel het in via de instellingen."
-#    exit 1
-#fi
-
-# Controleer de versie van Debian
-DEBIAN_VERSION=$(grep -oE '^[0-9]+' /etc/debian_version)
-
-if [ "$DEBIAN_VERSION" -ge 12 ]; then
-    PRUSA_FILE_PATTERN="PrusaSlicer-*-linux-x64-newer-distros-GTK3-*.AppImage"
-    PRUSA_URL="https://github.com/PrusaSlicer/PrusaSlicer/releases/latest/download/PrusaSlicer-latest-x64-newer-distros-GTK3.AppImage"
-else
-    PRUSA_FILE_PATTERN="PrusaSlicer-*-linux-x64-older-distros-GTK3-*.AppImage"
-    PRUSA_URL="https://github.com/PrusaSlicer/PrusaSlicer/releases/latest/download/PrusaSlicer-latest-x64-older-distros-GTK3.AppImage"
-fi
-
-# Download het PrusaSlicer bestand van GitHub
-echo "Het PrusaSlicer bestand wordt gedownload van GitHub..."
-
-wget -O PrusaSlicer.AppImage "$PRUSA_URL"
-
-if [ ! -f "PrusaSlicer.AppImage" ]; then
-    echo "Het downloaden is mislukt. Controleer de internetverbinding en probeer het opnieuw."
-    exit 1
-fi
-
-# Systeem bijwerken
+# Update het systeem
 echo "Pakketten worden bijgewerkt..."
 sudo apt update && sudo apt upgrade -y
 
-# Maak het bestand uitvoerbaar
-chmod +x PrusaSlicer.AppImage
+# Controleer of Flatpak is geïnstalleerd
+if ! command -v flatpak &> /dev/null; then
+    echo "Flatpak is niet geïnstalleerd. Het wordt nu geïnstalleerd..."
+    sudo apt install flatpak -y
+fi
 
-# Verplaats het bestand naar /usr/local/bin
-sudo mv PrusaSlicer.AppImage /usr/local/bin/prusaslicer
+# Voeg de Flathub repository toe als deze nog niet is toegevoegd
+if ! flatpak remote-list | grep -q flathub; then
+    echo "Voeg Flathub repository toe..."
+    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+fi
+
+# Installeer PrusaSlicer via Flatpak
+echo "PrusaSlicer wordt geïnstalleerd via Flatpak..."
+flatpak install flathub org.prusa3d.PrusaSlicer -y
 
 # Installatie voltooid
-echo "Installatie voltooid! Je kunt PrusaSlicer starten vanaf de terminal door 'prusaslicer' in te voeren."
+echo "Installatie voltooid! Je kunt PrusaSlicer starten vanaf de terminal door 'flatpak run org.prusa3d.PrusaSlicer' in te voeren."
